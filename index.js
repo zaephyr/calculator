@@ -5,7 +5,7 @@ const precedenceArr = [];
 let test = '';
 
 function getValue(e) {
-    const key = e.toElement;
+    const key = e.target;
     const display = document.querySelector('.display');
 
     const equals = () => {
