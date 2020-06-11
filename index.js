@@ -9,7 +9,6 @@ function getValue(e) {
     const display = document.querySelector('.display');
 
     const equals = () => {
-        inputArr.push(display.textContent);
         if (inputArr.length >= 3) {
             if (Number.isInteger(parseFloat(inputArr[0]))) {
                 const eval = operate(inputArr[0], inputArr[1], inputArr[2]);
@@ -29,16 +28,14 @@ function getValue(e) {
     };
 
     const precedence = () => {
-        if (precedenceArr.length > 0) {
-            const result = operate(inputArr[0], inputArr[1], inputArr[2]);
-            inputArr.splice(0);
-            inputArr.push(precedenceArr[0], precedenceArr[1], result);
-            precedenceArr.splice(0);
-            const eval = operate(inputArr[0], inputArr[1], inputArr[2]);
-            display.textContent = parseFloat(eval.toFixed(5));
-            inputArr.splice(0);
-            inputArr.push(eval);
-        }
+        const result = operate(inputArr[0], inputArr[1], inputArr[2]);
+        inputArr.splice(0);
+        inputArr.push(precedenceArr[0], precedenceArr[1], result);
+        const result2 = operate(inputArr[0], inputArr[1], inputArr[2]);
+        display.textContent = result2;
+        inputArr.splice(0);
+        inputArr.push(result2, key.textContent);
+        precedenceArr.splice(0);
     };
 
     if (key.className.includes('num')) {
@@ -55,8 +52,6 @@ function getValue(e) {
         inputArr.push(key.textContent);
         if (precedenceArr.length > 0) {
             precedence();
-
-            console.log(inputArr, precedenceArr, 'precedence');
         } else if (inputArr.length >= 3) {
             if ((key.textContent == '/' || key.textContent == 'x') && (inputArr[1] == '+' || inputArr[1] == '-')) {
                 const numWait = inputArr[0];
@@ -74,9 +69,23 @@ function getValue(e) {
         }
         test = '';
     } else if (key.className.includes('equals')) {
-        equals();
+        inputArr.push(display.textContent);
+        if (precedenceArr.length > 0) {
+            const result = operate(inputArr[0], inputArr[1], inputArr[2]);
+            inputArr.splice(0);
+            inputArr.push(precedenceArr[0], precedenceArr[1], result);
+            const result2 = operate(inputArr[0], inputArr[1], inputArr[2]);
+            display.textContent = result2;
+            inputArr.splice(0);
+            inputArr.push(result2, key.textContent);
+            precedenceArr.splice(0);
+            console.log(inputArr, precedenceArr, result, result2);
+        } else {
+            equals();
+        }
     } else if (key.className.includes('clear')) {
-        inputArr.splice(0, 100);
+        inputArr.splice(0);
+        precedenceArr.splice(0);
         display.textContent = '';
         // test = '';
     } else if (key.className.includes('backspace')) {
