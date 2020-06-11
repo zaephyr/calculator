@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Calculator</title>
+    </head>
+    <body>
+        <div id="calculator">
+            <div class="display">
+                <div id="inputExpr">0</div>
+                <div id="output"></div>
+            </div>
+            <div class="buttons">
+                <div class="numbers-grid">
+                    <button id="num1" data-key="97" class="key num">1</button>
+                    <button id="num2" data-key="98" class="key num">2</button>
+                    <button id="num3" data-key="99" class="key num">3</button>
+                    <button id="num4" data-key="100" class="key num">4</button>
+                    <button id="num5" data-key="101" class="key num">5</button>
+                    <button id="num6" data-key="102" class="key num">6</button>
+                    <button id="num7" data-key="103" class="key num">7</button>
+                    <button id="num8" data-key="104" class="key num">8</button>
+                    <button id="num9" data-key="105" class="key num">9</button>
+                    <button id="num0" data-key="96" class="key num zero">0</button>
+                    <button id="num10" data-key="97" class="key dot">.</button>
+                </div>
+                <div class="math-operators">
+                    <button id="backspace" data-key="8" class="key backspace">&#8592;</button>
+                    <button id="clear" data-key="46" class="key clear">CE</button>
+                    <button id="+" data-key="107" class="key operator">+</button>
+                    <button id="-" data-key="109" class="key operator">-</button>
+                    <button id="x" data-key="106" class="key operator">x</button>
+                    <button id="/" data-key="111" class="key operator">/</button>
+                    <button id="=" data-key="13" class="key equals">=</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="index.js"></script>
+</html>
