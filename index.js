@@ -1,18 +1,25 @@
 const calculator = document.getElementById('calculator');
+const display = document.querySelector('.display');
 const keys = calculator.querySelectorAll('.key');
 const inputArr = [];
 const precedenceArr = [];
 let test = '';
 
+// Apply event listener to all keys
+function init() {
+    for (let i = 0; i < keys.length; i++) {
+        keys[i].addEventListener('click', getValue);
+    }
+}
+
 function getValue(e) {
     const key = e.target;
-    const display = document.querySelector('.display');
 
     const equals = () => {
         if (inputArr.length >= 3) {
-            if (Number.isInteger(parseFloat(inputArr[0]))) {
+            if (Number.isFinite(parseFloat(inputArr[0]))) {
                 const eval = operate(inputArr[0], inputArr[1], inputArr[2]);
-                display.textContent = parseFloat(eval.toFixed(5));
+                display.textContent = eval;
                 inputArr.splice(0, 3);
             } else if (inputArr[0] == '' && typeof parseFloat(inputArr[2]) === 'number') {
                 console.log('sup2');
@@ -95,12 +102,7 @@ function getValue(e) {
     }
 }
 
-function init() {
-    for (let i = 0; i < keys.length; i++) {
-        keys[i].addEventListener('click', getValue);
-    }
-}
-
+//function for math problms
 const operate = (...arr) => {
     const num1 = parseFloat(arr[0]);
     const num2 = parseFloat(arr[2]);
